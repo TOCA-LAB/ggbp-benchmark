@@ -1,0 +1,57 @@
+file,source,source_url,license
+instances/real/C125-9.mtx,Network Repository,https://networkrepository.com/C125-9.php,CC BY-SA
+instances/real/DD199.mtx,Network Repository,https://networkrepository.com/DD199.php,CC BY-SA
+instances/real/DD244.mtx,Network Repository,https://networkrepository.com/DD244.php,CC BY-SA
+instances/real/DD349.mtx,Network Repository,https://networkrepository.com/DD349.php,CC BY-SA
+instances/real/DD497.mtx,Network Repository,https://networkrepository.com/DD497.php,CC BY-SA
+instances/real/DD6.mtx,Network Repository,https://networkrepository.com/DD6.php,CC BY-SA
+instances/real/DD68.mtx,Network Repository,https://networkrepository.com/DD68.php,CC BY-SA
+instances/real/DD687.mtx,Network Repository,https://networkrepository.com/DD687.php,CC BY-SA
+instances/real/adjnoun.mtx,Network Repository,https://networkrepository.com/adjnoun.php,CC BY-SA
+instances/real/bio-diseasome.mtx,Network Repository,https://networkrepository.com/bio-diseasome.php,CC BY-SA
+instances/real/bio-yeast.mtx,Network Repository,https://networkrepository.com/bio-yeast.php,CC BY-SA
+instances/real/c-fat200-1.mtx,Network Repository,https://networkrepository.com/c-fat200-1.php,CC BY-SA
+instances/real/c-fat200-2.mtx,Network Repository,https://networkrepository.com/c-fat200-2.php,CC BY-SA
+instances/real/c-fat200-5.mtx,Network Repository,https://networkrepository.com/c-fat200-5.php,CC BY-SA
+instances/real/c-fat500-1.mtx,Network Repository,https://networkrepository.com/c-fat500-1.php,CC BY-SA
+instances/real/c-fat500-2.mtx,Network Repository,https://networkrepository.com/c-fat500-2.php,CC BY-SA
+instances/real/c-fat500-5.mtx,Network Repository,https://networkrepository.com/c-fat500-5.php,CC BY-SA
+instances/real/ca-netscience.mtx,Network Repository,https://networkrepository.com/ca-netscience.php,CC BY-SA
+instances/real/chesapeake.mtx,Network Repository,https://networkrepository.com/chesapeake.php,CC BY-SA
+instances/real/deezer-europe.mtx,SNAP,https://snap.stanford.edu/data/feather-deezer-social.html,not specified
+instances/real/delaunay-n10.mtx,Network Repository,https://networkrepository.com/delaunay-n10.php,CC BY-SA
+instances/real/dolphins.mtx,Network Repository,https://networkrepository.com/dolphins.php,CC BY-SA
+instances/real/email-univ.mtx,Network Repository,https://networkrepository.com/email-univ.php,CC BY-SA
+instances/real/fb-pages-artist.mtx,SNAP,https://snap.stanford.edu/data/gemsec_facebook_dataset.html,not specified
+instances/real/fb-pages-company.mtx,SNAP,https://snap.stanford.edu/data/gemsec_facebook_dataset.html,not specified
+instances/real/fb-pages-government.mtx,SNAP,https://snap.stanford.edu/data/gemsec_facebook_dataset.html,not specified
+instances/real/fb-pages-sport.mtx,SNAP,https://snap.stanford.edu/data/gemsec_facebook_dataset.html,not specified
+instances/real/ia-crime-moreno.mtx,Network Repository,https://networkrepository.com/ia-crime-moreno.php,CC BY-SA
+instances/real/ia-enron-only.mtx,Network Repository,https://networkrepository.com/ia-enron-only.php,CC BY-SA
+instances/real/ia-fb-messages.mtx,Network Repository,https://networkrepository.com/ia-fb-messages.php,CC BY-SA
+instances/real/ia-infect-dublin.mtx,Network Repository,https://networkrepository.com/ia-infect-dublin.php,CC BY-SA
+instances/real/ia-infect-hyper.mtx,Network Repository,https://networkrepository.com/ia-infect-hyper.php,CC BY-SA
+instances/real/karate.mtx,Network Repository,https://networkrepository.com/karate.php,CC BY-SA
+instances/real/musae-facebook.mtx,SNAP,https://snap.stanford.edu/data/facebook-large-page-page-network.html,not specified
+instances/real/polbooks.mtx,Network Repository,https://networkrepository.com/polbooks.php,CC BY-SA
+instances/real/rt-retweet.mtx,Network Repository,https://networkrepository.com/rt-retweet.php,CC BY-SA
+instances/real/rt-twitter-copen.mtx,Network Repository,https://networkrepository.com/rt-twitter-copen.php,CC BY-SA
+instances/real/soc-BlogCatalog.mtx,Network Repository,https://networkrepository.com/soc-BlogCatalog.php,CC BY-SA
+instances/real/soc-LiveMocha.mtx,Network Repository,https://networkrepository.com/soc-LiveMocha.php,CC BY-SA
+instances/real/soc-brightkite.mtx,SNAP,https://snap.stanford.edu/data/loc-brightkite.html,not specified
+instances/real/soc-buzznet.mtx,Network Repository,https://networkrepository.com/soc-buzznet.php,CC BY-SA
+instances/real/soc-douban.mtx,Network Repository,https://networkrepository.com/soc-douban.php,CC BY-SA
+instances/real/soc-gemsec-HR.mtx,SNAP,https://snap.stanford.edu/data/gemsec-Deezer.html,not specified
+instances/real/soc-gemsec-HU.mtx,SNAP,https://snap.stanford.edu/data/gemsec-Deezer.html,not specified
+instances/real/soc-gemsec-RO.mtx,SNAP,https://snap.stanford.edu/data/gemsec-Deezer.html,not specified
+instances/real/soc-gowalla.mtx,SNAP,https://snap.stanford.edu/data/loc-gowalla.html,not specified
+instances/real/soc-slashdot.mtx,SNAP,https://snap.stanford.edu/data/soc-sign-Slashdot090216.html,not specified
+instances/real/soc-wiki-Vote.mtx,SNAP,https://snap.stanford.edu/data/wiki-Vote.html,not specified
+instances/real/socfb-OR.mtx,Network Repository,https://networkrepository.com/socfb-OR.php,CC BY-SA
+instances/real/socfb-Reed98.mtx,Network Repository,https://networkrepository.com/socfb-Reed98.php,CC BY-SA
+instances/real/stufe.mtx,Network Repository,https://networkrepository.com/stufe.php,CC BY-SA
+instances/real/tech-routers-rf.mtx,Network Repository,https://networkrepository.com/tech-routers-rf.php,CC BY-SA
+instances/real/web-polblogs.mtx,Network Repository,https://networkrepository.com/web-polblogs.php,CC BY-SA
+instances/real/web-wiki-chameleon.mtx,SNAP,https://snap.stanford.edu/data/wikipedia-article-networks.html,not specified
+instances/real/web-wiki-crocodile.mtx,SNAP,https://snap.stanford.edu/data/wikipedia-article-networks.html,not specified
+instances/real/web-wiki-squirrel.mtx,SNAP,https://snap.stanford.edu/data/wikipedia-article-networks.html,not specified
