@@ -60,10 +60,14 @@ The real instances were obtained from the
 [Network Repository](https://networkrepository.com/) and from the 
 [Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/).
 Their original graph names were preserved in the file names.
+SNAP instances were converted from the edge list format to the MatrixMarket format.
+Since instances are undirected simple graphs, loops and duplicate edges were removed.
 
 Per-instance source metadata is available in `metadata/real-sources.csv`.
 
 The random and planar instances were generated using [SageMath](https://www.sagemath.org/).
+The selected planar instances are the first 10 graphs returned by SageMath's `graphs.planar_graphs(n)`
+
 
 ## License
 
