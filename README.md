@@ -156,12 +156,15 @@ Optimal values, solver outputs, execution logs, and analysis tables belong to th
 
 ## Research background and attribution
 
-This repository was developed in the undergraduate research project *Queimando Grafos* at the Federal University of ABC (UFABC), by Lucas Guido under the supervision of Maycon Sambinelli, with support from FAPESP, process **2025/04352-6**.
+This repository was developed in the undergraduate research project *Queimando Grafos* at the [Federal University of ABC (UFABC)](https://www.ufabc.edu.br/), by [Lucas Guido](https://github.com/lucas-gcp) under the supervision of [Maycon Sambinelli, Ph.D.](http://professor.ufabc.edu.br/~m.sambinelli/), with support from FAPESP, [process **2025/04352-6**](https://bv.fapesp.br/pt/bolsas/232745/queimando-grafos/).
 
 ## License and source attribution
 
-The generated graphs in `instances/random/` and `instances/planar/` are released under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+The generated graphs in `instances/random/` and `instances/planar/` are released under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/). See [`LICENSE`](LICENSE) for the full license texts.
 
+Copyright (C) 2026 Lucas Guido, Maycon Sambinelli / Universidade Federal do ABC
+
+### Third-party components
 Graphs in `instances/real/` are derived from third-party datasets and are not covered by that declaration. Consult their entries in [`metadata/real-sources.csv`](metadata/real-sources.csv) and the linked source pages:
 
 - Network Repository publishes a [CC BY-SA data policy and citation requirements](https://networkrepository.com/policy.php). Its metadata entries here use `CC BY-SA` without assigning a license version.
