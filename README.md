@@ -1,106 +1,181 @@
-# GGBP-Instances
+# GGBP benchmark
 
-## Overview
+A collection of **296 graph instances** for evaluating algorithms for the **Generalized Graph Burning Problem (GGBP)**. It combines generated random graphs, generated planar graphs, and reference networks collected from public repositories.
 
-This repository provides benchmark instances for the Generalized Graph Burning
-Problem (GGBP). 
-The instances are organized into three families: real-world graphs, generated
-planar graphs, and generated random graphs.
+The files describe graph topology. The burning threshold `r` is selected when running an algorithm, so the same instance can be used for different thresholds, including the classical Graph Burning Problem with `r = 1`.
 
+| Family | Directory | Instances | Number of vertices |
+|---|---|---:|---:|
+| Random graphs | [`instances/random/`](instances/random/) | 200 | 50–200 |
+| Planar graphs | [`instances/planar/`](instances/planar/) | 40 | 10–64 |
+| Reference networks | [`instances/real/`](instances/real/) | 56 | 34–196,591 |
+| **Total** | | **296** | **10–196,591** |
 
-The benchmark contains 296 instances:
-+ 56 real instances
-+ 40 planar generated instances
-+ 200 random generated instances
+The historical directory name `real/` identifies the third-party collection. It includes real-world networks and established benchmark graphs, such as the [DIMACS instance C125-9](https://networkrepository.com/C125-9.php); it should not be read as a claim that every graph in that directory was measured from a real-world network.
 
-## Dataset Structure
+## Quick start
 
-The dataset is structured in the following way:
 ```sh
-ggbp-instances/
-├── instances
-│   ├── planar
-│   │   └── planar-n<n>-i<i>.mtx
-│   ├── random
-│   │   └── gnp-n<n>-p<p>-i<i>.mtx
-│   └── real
-│       └── name.mtx
-└── metadata
-    └── real-sources.csv
+git clone https://github.com/TOCA-LAB/ggbp-benchmark.git
+cd ggbp-benchmark
 ```
 
-## File Format
+No compilation or dataset download step is needed: the instance files are included in the repository.
 
-All instances are stored in MatrixMarket (`.mtx`) format. Each file represents a sparse
-adjacency matrix in coordinate form, where each coordinate entry indicates an edge.
-The instances are unweighted.
+To run an instance with [ggbp-solver](https://github.com/TOCA-LAB/ggbp-solver), first build the solver following its README. Assuming the two repositories are sibling directories:
 
-All instances are stored in MatrixMarket (`.mtx`) coordinate format as sparse
-adjacency matrices. 
-All instances are treated as undirected, unweighted graphs.
+```sh
+mkdir -p results
 
+../ggbp-solver/build/bin/unburned_neighbors \
+  instances/real/karate.mtx 2 \
+  --json results/karate-r2.json
+```
 
-## Instance Naming
+Here, `2` is the burning threshold, not a property encoded in the instance file. Batch experiment recipes are maintained in [ggbp-experiments](https://github.com/TOCA-LAB/ggbp-experiments).
 
-For the real instances, the name of the graph is presented. 
-For the generated instances, the parameters are:
-+ $n$: Order of the graph
-+ $p$: Probability of adding an edge between two vertices, represented as a percentage in the file name (for the random instances only)
-+ $i$: Number of the instance (there are several instances with each parameter combination)
+## Repository layout
 
-For example, `p10` means $p = 0.10$.
+```text
+instances/
+├── random/
+│   └── gnp-n<n>-p<p>-i<i>.mtx
+├── planar/
+│   └── planar-n<n>-i<i>.mtx
+└── real/
+    └── <network-name>.mtx
+metadata/
+└── real-sources.csv
+```
 
-Examples:
-+ `planar-n50-i3.mtx`: Planar graph with 50 vertices, instance 3
-+ `gnp-n100-p20-i7.mtx`: Random graph $G(n,p)$ with $n = 100$, $p = 0.20$, instance 7
+## Instance families
 
-## Sources
+### Random graphs
 
-The real instances were obtained from the 
-[Network Repository](https://networkrepository.com/) and from the 
-[Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/).
-Their original graph names were preserved in the file names.
-SNAP instances were converted from the edge list format to the MatrixMarket format.
-Since instances are undirected simple graphs, loops and duplicate edges were removed.
+The random family uses the independent-edge model `G(n, p)`:
 
-Per-instance source metadata is available in `metadata/real-sources.csv`.
+- Orders: `n ∈ {50, 100, 150, 200}`.
+- Edge probabilities: `p ∈ {0.10, 0.15, 0.20, 0.25, 0.30}`.
+- Ten instances per combination, indexed from `i0` to `i9`.
 
-The random and planar instances were generated using [SageMath](https://www.sagemath.org/).
-The selected planar instances are the first 10 graphs returned by SageMath's `graphs.planar_graphs(n)`
+This gives `4 × 5 × 10 = 200` instances, generated with [SageMath](https://www.sagemath.org/).
 
+The probability `p` is the **expected density**, not the exact density of an individual graph. For a simple undirected graph with `n` vertices and `m` edges, the observed density is `2m / [n(n−1)]`, while the expected number of edges in `G(n, p)` is `p·n(n−1)/2`.
 
-## License
+### Planar graphs
 
-The generated instances in `instances/planar` and `instances/random` are released under
-the Creative Commons Attribution-ShareAlike 4.0 International license (CC BY-SA 4.0).
+There are ten instances for each order `n ∈ {10, 25, 50, 64}`, totaling 40 graphs. The project selected the first ten graphs returned by SageMath's `graphs.planar_graphs(n)` for each order.
 
-The real instances in `instances/real` are derived from third-party graph datasets and are
-not covered by the license above. 
-Per-instance source and license metadata is available in `metadata/real-sources.csv`.
+This is a selection from the generator's enumeration, not a random sample of the entire class of planar graphs.
 
-Instances derived from the Network Repository are subject to its data policy, which
-licenses data under a Creative Commons Attribution-ShareAlike license.
+### Reference networks
 
-Instances derived from the Stanford Large Network Dataset Collection should be cited
-according to SNAP's citation instructions. No general dataset license was identified on
-the SNAP dataset page; users should verify the terms of each original dataset before
-redistribution or reuse.
+The 56 files in `instances/real/` were collected from:
+
+- [Network Repository](https://networkrepository.com/): 40 instances.
+- [Stanford Large Network Dataset Collection (SNAP)](https://snap.stanford.edu/data/): 16 instances.
+
+The collection includes networks from different domains and existing graph benchmarks. Source pages and recorded license information are listed individually in [`metadata/real-sources.csv`](metadata/real-sources.csv).
+
+| Metadata column | Description |
+|---|---|
+| `file` | Instance path relative to the repository root |
+| `source` | Repository from which the graph was obtained |
+| `source_url` | Dataset page with its description and citation information |
+| `license` | License information recorded for that source |
+
+Each reference-network file has one corresponding row in this metadata file. Source pages provide the context for the original networks; the files distributed here are the computational inputs used by this project.
+
+## File format and graph interpretation
+
+Instances use **Matrix Market-style coordinate files** with the `.mtx` extension. Some have a Matrix Market banner; others start directly with the dimensions. The dimension line contains the graph order twice and a declared count `m`. All edge records contain two integer vertex identifiers:
+
+```text
+% Optional leading comments or a Matrix Market banner
+n n m
+u_1 v_1
+u_2 v_2
+...
+```
+
+For example, a triangle can be represented as:
+
+```text
+%%MatrixMarket matrix coordinate pattern symmetric
+3 3 3
+1 2
+2 3
+1 3
+```
+
+When loading an instance for the GGBP:
+
+1. Skip leading lines beginning with `%`, if present.
+2. Read the dimensions and preserve all `n` vertices, including vertices without edge records.
+3. Read endpoint pairs until the end of the file. Vertex identifiers are **one-based**, from `1` to `n`.
+4. Interpret each pair as an **undirected, unweighted** edge. For the simple-graph problem, discard self-loops and merge repeated undirected edges.
+
+The `.mtx` suffix does not imply that every file can be passed unchanged to a strict Matrix Market reader. In particular:
+
+- Some files omit the required Matrix Market banner.
+- Reference-network files can contain self-loops or repeated edge records; the edge count of the resulting simple graph can therefore differ from the number of records.
+- [`web-wiki-crocodile.mtx`](instances/real/web-wiki-crocodile.mtx) declares `170918` in its header but contains `180020` endpoint-pair records. Removing 145 self-loops and merging 9102 repeated undirected records gives 170773 simple edges. Read all records rather than stopping at the declared count.
+
+The companion solver's coordinate reader follows this interpretation. Other readers may require an explicit conversion. The instance files are preserved here; readers and analyses should state how they normalize them.
+
+## Naming conventions
+
+| Pattern | Interpretation | Example |
+|---|---|---|
+| `gnp-n<n>-p<p>-i<i>.mtx` | Random graph; `p` is expressed as a percentage | [`gnp-n100-p20-i7.mtx`](instances/random/gnp-n100-p20-i7.mtx): order 100, edge probability 0.20, index 7 |
+| `planar-n<n>-i<i>.mtx` | Planar graph of the given order and index | [`planar-n50-i3.mtx`](instances/planar/planar-n50-i3.mtx): order 50, index 3 |
+| `<network-name>.mtx` | Reference-network identifier, mapped to its source in the metadata | [`karate.mtx`](instances/real/karate.mtx) |
+
+The index `i` identifies a stored instance; it is **not** a graph-generation seed or an algorithm seed. Preserve filename case when selecting files or joining instance names with results.
+
+## Reproducible use
+
+The distributed files define the benchmark. Generation scripts and graph-generation seeds are not included in this repository, so generation parameters alone do not reconstruct the exact stored graphs.
+
+Record the dataset commit and the subset of files used in each experiment. For example:
+
+```sh
+git rev-parse HEAD
+sha256sum instances/random/gnp-n100-p20-i7.mtx
+```
+
+The repository contains all 296 instances. An experiment-specific exclusion or missing solver result does not remove an instance from this collection. Document such subsets and failures in the experiment results rather than silently changing the benchmark.
+
+Optimal values, solver outputs, execution logs, and analysis tables belong to the companion experiment and analysis repositories. They are not encoded in these graph files.
+
+## Related research artifacts
+
+- [ggbp-solver](https://github.com/TOCA-LAB/ggbp-solver): exact methods, heuristics, and metaheuristics.
+- [ggbp-experiments](https://github.com/TOCA-LAB/ggbp-experiments): recipes for the computational experiments.
+- [ggbp-analisis](https://github.com/TOCA-LAB/ggbp-analisis): processing of raw results, tables, and figures.
+
+## Research background and attribution
+
+This repository was developed in the undergraduate research project *Queimando Grafos* at the Federal University of ABC (UFABC), by Lucas Guido under the supervision of Maycon Sambinelli, with support from FAPESP, process **2025/04352-6**.
+
+## License and source attribution
+
+The generated graphs in `instances/random/` and `instances/planar/` are released under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+
+Graphs in `instances/real/` are derived from third-party datasets and are not covered by that declaration. Consult their entries in [`metadata/real-sources.csv`](metadata/real-sources.csv) and the linked source pages:
+
+- Network Repository publishes a [CC BY-SA data policy and citation requirements](https://networkrepository.com/policy.php). Its metadata entries here use `CC BY-SA` without assigning a license version.
+- SNAP entries use `not specified` where no license was recorded in the metadata. This is not a public-domain designation; consult the individual dataset page for its terms and citation instructions.
 
 ## Citation
 
-If you use this benchmark dataset, please cite it as:
+When using this collection, cite the benchmark and identify the exact commit used. Also cite the original datasets and source repositories as requested on their dataset pages.
 
 ```bibtex
-@misc{ggbp_instances,
-  title        = {GGBP-Instances: A Benchmark Dataset for the Generalized Graph Burning Problem},
-  author       = {Guido, Lucas and Sambinelli, Maycon},
-  year         = {2026},
-  howpublished = {\url{https://github.com/student-lucas/ggbp-instances}},
-  note         = {Accessed: 2026-06-08}
+@misc{ggbp_benchmark,
+  author = {Guido, Lucas and Sambinelli, Maycon},
+  title  = {{GGBP Benchmark}: Instances for the Generalized Graph Burning Problem},
+  year   = {2026},
+  url    = {https://github.com/TOCA-LAB/ggbp-benchmark}
 }
 ```
-
-## Authors
-
-+ Lucas Guido
-+ Maycon Sambinelli
